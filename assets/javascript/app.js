@@ -3,7 +3,9 @@
 $(document).ready(function () {
 console.log("loaded page")
 
-var queryURL = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5"
+var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC" 
+//API key?
+// + "LADom26qErILrvxvUKoDrk3kmFT6jhiO"
 
 var topics = ["Pepe", "Patrick", "Danny DeVito"]
 
@@ -11,6 +13,8 @@ var topics = ["Pepe", "Patrick", "Danny DeVito"]
 $.ajax({
 url: queryURL,
 method: "GET"
-})
+}).then(function(response) {
+    console.log(response);
+});
 
 });
