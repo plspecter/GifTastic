@@ -3,11 +3,36 @@
 $(document).ready(function () {
     console.log("loaded page")
 
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC"
-    //API key?
+    var topic = $(this).attr("data-name");
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "LADom26qErILrvxvUKoDrk3kmFT6jhiO";
+    // var queryURL = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO&limit=5");
+    // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC" + topic + "LADom26qErILrvxvUKoDrk3kmFT6jhiO"
+
+    //API key
     // + "LADom26qErILrvxvUKoDrk3kmFT6jhiO"
 
     var topics = ["Pepe", "Patrick", "Danny DeVito"];
+
+        //Ajax time
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            }).then(function(response) {
+                console.log(response);
+
+                //Creates a div to hold the gif images
+                var topicDiv = $("<div class ='topic'>");
+
+                //Retreiving info about gifs related to that word
+                var imgURL = response.gif;
+
+                //Create an element to hold the image
+                var image = $("<img>").attr("src", imgURL);
+
+                topicDiv.append(image);
+
+
+            });
 
     //we need to render these buttons
 
@@ -49,12 +74,5 @@ $(document).ready(function () {
 
     renderButtons();
 
-    //Ajax time
-    $.ajax({
-    url: queryURL,
-    method: "GET"
-    }).then(function(response) {
-        console.log(response);
-    });
 
 });
