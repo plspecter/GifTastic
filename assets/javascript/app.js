@@ -36,8 +36,9 @@ $(document).ready(function () {
 
             // var imageUrl = response.data.image.fixed_height;
             // console.log(fixed_height);
-            var imageUrl = response.data.image.fixed_height_still;
-            console.log(fixed_height_still);
+            // console.log(results);
+            var imageUrl = results[i].images.fixed_height_still.url;
+            console.log(imageUrl);
             //Creates a div to hold the gif images
             var topicDiv = $("<img>");
 
@@ -48,7 +49,7 @@ $(document).ready(function () {
             // var topicDiv = $("<img>").attr("src", imageUrl);
 
             //Grabs the first image the URL source finds
-            console.log(response.data);
+            // console.log(response.data);
             console.log(imageUrl);
             topicDiv.attr("src", imageUrl);
             topicDiv.attr("alt", "gif img")
