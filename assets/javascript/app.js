@@ -31,11 +31,13 @@ $(document).ready(function () {
 
             var results = response.data;
 
-
+            // for (var i = 0; i < results[i]; i++) {
             for (var i = 0; i < results.length; i++) {
 
-            var imageUrl = response.data.image_original_url;
-
+            // var imageUrl = response.data.image.fixed_height;
+            // console.log(fixed_height);
+            var imageUrl = response.data.image.fixed_height_still;
+            console.log(fixed_height_still);
             //Creates a div to hold the gif images
             var topicDiv = $("<img>");
 
@@ -46,6 +48,8 @@ $(document).ready(function () {
             // var topicDiv = $("<img>").attr("src", imageUrl);
 
             //Grabs the first image the URL source finds
+            console.log(response.data);
+            console.log(imageUrl);
             topicDiv.attr("src", imageUrl);
             topicDiv.attr("alt", "gif img")
 
