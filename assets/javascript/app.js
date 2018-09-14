@@ -9,19 +9,10 @@ $(document).ready(function () {
 
     $("#buttons").on("click", function () {
 
+        //It checks this(buttons) and attaches the data person attribute from the html
+        //person now holds what person is in data-person 
         var person = $(this).attr("data-person");
-        // var topics = $(this).attr("data-gifs");
-        // var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + "&api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO" + person;
-        // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO=pepe";
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO";
-        // var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO";
-        // var queryURL = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO&limit=5");
-        // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC" + topic + "LADom26qErILrvxvUKoDrk3kmFT6jhiO"
-
-        //API key
-        // + "LADom26qErILrvxvUKoDrk3kmFT6jhiO"
-
-       
 
         //Ajax time
         $.ajax({
@@ -31,19 +22,17 @@ $(document).ready(function () {
 
             var results = response.data;
 
-            // for (var i = 0; i < results[i]; i++) {
+            //Go through the nodes objects and arrays in the console
             for (var i = 0; i < results.length; i++) {
 
-            // var imageUrl = response.data.image.fixed_height;
-            // console.log(fixed_height);
-            // console.log(results);
+           //Go through the console web to see where  the image is nested
             var imageUrl = results[i].images.fixed_height_still.url;
             console.log(imageUrl);
             //Creates a div to hold the gif images
             var topicDiv = $("<img>");
 
             //Retreiving info about gifs related to that word
-
+        
 
             //Create an element to hold the image
             // var topicDiv = $("<img>").attr("src", imageUrl);
@@ -56,7 +45,6 @@ $(document).ready(function () {
 
             //Calls on the images ID at the top
             $("#images").append(topicDiv);
-
             // topicDiv.append(image);
 
             }
@@ -65,6 +53,8 @@ $(document).ready(function () {
 
     });
 
+    //When you click the buttons
+   
     //we need to render these buttons
 
     function renderButtons() {
@@ -87,9 +77,11 @@ $(document).ready(function () {
     }
 
 
-
+//When you click on ADD
     $("#add-topic").on("click", function (event) {
         console.log("works");
+
+    
 
         event.preventDefault();
         
@@ -102,6 +94,24 @@ $(document).ready(function () {
         // Write code to add the new topic into the movies array
 
         renderButtons();
+
+        //Make the new button gifs show up
+        for (var i = 0; i < results.length; i++) {
+            var newTopic = results[i].images.fixed_height_still.url;
+            console.log(newTopic);
+
+             //Creates a div to hold the new gif images
+             var newtopicDiv = $("<img>");
+
+            //Attach the same properties as the original buttons
+             newtopicDiv.attr("src", imageUrl);
+             newtopicDiv.attr("alt", "gif img")
+
+            //Calls on the images ID at the top
+            $("#images").append(newtopicDiv);
+ 
+  
+          }
 
         
 
