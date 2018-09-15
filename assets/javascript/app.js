@@ -11,7 +11,10 @@ $(document).ready(function () {
 
         //It checks this(buttons) and attaches the data person attribute from the html
         //person now holds what person is in data-person 
-        var person = $(this).attr("data-person");
+        // var person = $(this).attr("data-person");
+        // var person = $(this).text();
+        var person = $(this).text();
+        console.log(person);
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=LADom26qErILrvxvUKoDrk3kmFT6jhiO";
 
         //Ajax time
